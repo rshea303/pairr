@@ -6,4 +6,16 @@ RSpec.describe User, type: :model do
     
     expect(user).to be_valid
   end
+
+  it "is valid with a description less than 500 characters" do
+    user = User.new(description: "a" * 499)
+
+    expect(user).to be_valid
+  end
+
+  it "is not valid with a description more than 500 characters" do
+    user = User.new(description: "a" * 501)
+
+    expect(user).not_to be_valid
+  end
 end

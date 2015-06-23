@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :languages
+
   validates :description, length: { maximum: 500 }
 
   def self.find_or_create_from_auth(data)

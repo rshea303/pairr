@@ -18,4 +18,12 @@ RSpec.describe User, type: :model do
 
     expect(user).not_to be_valid
   end
+
+  it "has a language" do
+    user = User.create(description: "desc")
+    user.languages.create(name: "first language")
+
+    expect(user.languages.count).to eq(1)
+    expect(user.languages.first.name).to eq("first language")
+  end
 end

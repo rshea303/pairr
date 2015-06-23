@@ -11,7 +11,7 @@
           </li>
         <% end %>
       </ul>
-      <%= ff.submit "Add Preferred Programming Languages" %>
+      <%= ff.submit "Submit Language Preferences" %>
     <% end %>
   <% end %>
 </div>
@@ -19,5 +19,8 @@
 <%= form_for @user do |f| %>
   <%= f.label :description, placeholder: "Tell us more about yourself" %>
   <%= f.text_area :description %>
-  <%= f.submit "Include Description" %>
+  <%= f.submit "Submit Description" %>
 <% end %>
+
+
+

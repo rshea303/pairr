@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'sprockets-rails'
 gem 'bootstrap-sass'
 gem 'rails', '4.2.1'
 gem 'pg'

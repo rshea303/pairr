@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'omniauth-github'
 gem 'sprockets-rails'
 gem 'bootstrap-sass'
 gem 'rails', '4.2.1'

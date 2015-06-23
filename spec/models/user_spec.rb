@@ -26,4 +26,16 @@ RSpec.describe User, type: :model do
     expect(user.languages.count).to eq(1)
     expect(user.languages.first.name).to eq("first language")
   end
+  
+  it "has many languages" do
+    user = User.create(description: "desc")
+    user.languages.create(name: "first language")
+    user.languages.create(name: "second language")
+    user.languages.create(name: "third language")
+
+    expect(user.languages.count).to eq(3)
+    expect(user.languages.first.name).to eq("first language")
+    expect(user.languages.last.name).to eq("third language")
+  end
+
 end

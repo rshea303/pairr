@@ -1,7 +1,9 @@
-def language_creation
-  %w(Ruby JavaScript CSS HTML Java VisualBasic).each do |language|
-    Language.create(name: language)
+class Seed
+  def languages
+    ["Ruby", "JavaScript", "VisualBasic", "Python", "Java"].each do |language|
+      Language.create(name: language)
+    end
   end
 end
 
-language_creation
+Seed.new.languages

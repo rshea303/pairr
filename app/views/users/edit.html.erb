@@ -1,7 +1,7 @@
 <%= render 'shared/header' %>
 
 <div id="checklist">
-  <%= form_tag({:controller => "users", :action => "update"}, method: :get) do %>
+  <%= form_tag({:controller => "users", :action => "update"}, method: :put) do %>
     <%= fields_for :language_ids do |ff| %>
       <ul>
         <% @languages.each do |language| %>

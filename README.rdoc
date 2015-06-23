@@ -1,0 +1,1 @@
+Pairr is a 'tinder' like web app developed to match programmers for pairing opportunities.

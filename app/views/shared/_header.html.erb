@@ -4,7 +4,11 @@
         <div class="col-xs-3">
           <a class="navbar-brand" href="/">Pairr</a>
         </div>
-        <div class="col-xs-6"></div>
+        <div class="col-xs-6" id="current-user-header">
+          <% if current_user %>
+            Welcome <%= current_user.nickname %>
+          <% end %>
+        </div>
         <div class="col-xs-3" id="github">
           <%= link_to "Sign In With Github", "/auth/github", class: "btn btn-default" %>
         </div>

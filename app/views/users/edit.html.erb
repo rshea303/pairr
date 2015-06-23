@@ -1,10 +1,23 @@
 <%= render 'shared/header' %>
 
-Please select your preferred programming languages
----list of languages---
+<div id="checklist">
+  <%= form_tag({:controller => "users", :action => "update"}, method: :get) do %>
+    <%= fields_for :language_ids do |ff| %>
+      <ul>
+        <% @languages.each do |language| %>
+          <li>
+            <%= ff.check_box(language.name, {}, language.id, nil) %>
+            <%= language.name %>
+          </li>
+        <% end %>
+      </ul>
+      <%= ff.submit "Add Preferred Programming Languages" %>
+    <% end %>
+  <% end %>
+</div>
 
 <%= form_for @user do |f| %>
   <%= f.label :description, placeholder: "Tell us more about yourself" %>
   <%= f.text_area :description %>
-  <%= f.submit "Submit" %>
+  <%= f.submit "Include Description" %>
 <% end %>

@@ -6,6 +6,8 @@ class StaticPagesController < ApplicationController
   end
 
   def pairs
-    @user = User.find(10)
+    require "pry"
+    binding.pry
+    @user = User.last
   end
 end

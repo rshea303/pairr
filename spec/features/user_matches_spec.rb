@@ -8,4 +8,15 @@ describe "user" do
 
     expect(page).to have_content("Find Pairs")
   end
+
+  it "can see first match" do
+    user = User.create(nickname: "user", description: "hello")
+    user1 = User.create(nickname: "user1", description: "hello")
+    
+    visit dashboard_path
+    click_on("Find Pairs")
+
+    expect(page).to have_content("user1")
+    expect(page).to have_content("hello")
+  end
 end

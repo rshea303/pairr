@@ -38,18 +38,26 @@ class StaticPagesController < ApplicationController
   end
 
   def rejects
-    require "pry"
-    binding.pry
     current_user.rejects << Reject.create(rejected_user_id: params[:rejected_user_id])
-    current_user.matches.find_by(match_user_id: params[:rejected_user_id]).destroy
+    if current_user.matches.find_by(match_user_id: params[:rejected_user_id])
+      current_user.matches.find_by(match_user_id: params[:rejected_user_id]).destroy
+    else
+      current_user.pendings.find_by(pending_user_id: params[:rejected_user_id]).destroy
+    end
     redirect_to pairs_path
   end
 
   def selections
-    current_user.selections << Selection.create(selected_user_id: params[:selected_user_id])
-    selected_user = User.find(params[:selected_user_id])
-    selected_user.pendings << Pending.create(pending_user_id: current_user.id)
-    current_user.matches.find_by(match_user_id: params[:selected_user_id]).destroy
-    redirect_to pairs_path
+    if current_user.pendings.find_by(pending_user_id: params[:selected_user_id])
+      alert[:notice] = "Congratulations! You and #{User.find(params[:selected_user_id]).nickname} are a pair!"
+      redirect_to dashboard_path
+    else
+      current_user.selections << Selection.create(selected_user_id: params[:selected_user_id])
+      selected_user = User.find(params[:selected_user_id])
+      selected_user.pendings << Pending.create(pending_user_id: current_user.id)
+
+      current_user.matches.find_by(match_user_id: params[:selected_user_id]).destroy
+      redirect_to pairs_path
+    end
   end
 end

@@ -39,3 +39,22 @@
   margin-top: 25px;
   padding: 25px;
 }
+
+/* match page */
+
+#match {
+  text-align: center;
+  margin-top: 200px;
+  padding: 10px;
+  border: solid black 1px;
+}
+
+#reject-button {
+  float: left;
+  margin-left: 25px;
+}
+
+#approve-button {
+  float: right;
+  margin-right: 25px;
+}

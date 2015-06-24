@@ -1,1 +1,18 @@
-Here is the pairs page
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4">
+      <div id="match">
+        <p><%= @user.nickname %></p>
+        <p><%= @user.uid %></p>
+        <p><%= @user.image_url %></p>
+        <p><%= @user.description %></p>
+        <div class="row">
+            <%= button_to "Reject", "#", id: "reject-button" %>
+            <%= button_to "Approve", "#", id: "approve-button" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4"></div>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+<%= render 'shared/header' %>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-4"></div>
@@ -5,7 +7,7 @@
       <div id="match">
         <p><%= @match.nickname %></p>
         <p><%= @match.uid %></p>
-        <p><%= @match.image_url %></p>
+        <p><%= image_tag @match.image_url, class: "img-circle img-thumbnail" %></p>
         <p><%= @match.description %></p>
         <div class="row">
             <%= button_to "Reject", rejects_path(rejected_user_id: @match.id), id: "reject-button" %>

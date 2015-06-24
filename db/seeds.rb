@@ -10,7 +10,7 @@ class Seed
     50.times do |i|
     user = User.create(nickname: "funny name #{i}",
                 uid: "100#{i}",
-                image_url: "https://avatars.githubusercontent.com/u/7582765?v=3",
+                image_url: "https://avatars.githubusercontent.com/u/#{rand(70000..80000)}?v=3",
                 description: "This is my description.")
     user.languages << Language.find(rand(1..3))
     user.languages << Language.find(rand(4..5))

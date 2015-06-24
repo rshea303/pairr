@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :languages
+  has_many :rejects
 
   validates :description, length: { maximum: 500 }
 

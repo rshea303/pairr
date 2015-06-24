@@ -95,4 +95,18 @@ RSpec.describe User, type: :model do
     expect(user.matches.count).to eq(3) 
   end
 
+  it "has a list of pending matches" do
+    user = User.create(nickname: "user", description: "desc")
+    user1 = User.create(nickname: "user1", description: "user1 desc")
+
+    user.matches << Match.create(match_user_id: user1.id)
+    user1.matches << Match.create(match_user_id: user.id)
+
+    expect(user.pendings.count).to eq(0)
+
+    user.pendings << Pending.create(pending_user_id: user1.id)
+    
+    expect(user.pendings.count).to eq(1)
+  end
+
 end

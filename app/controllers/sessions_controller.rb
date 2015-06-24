@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :authorize!, only: [:destroy]
+
   def create
     if User.exists?(uid: request.env['omniauth.auth'].uid)
       user = User.find_or_create_from_auth(request.env['omniauth.auth'])

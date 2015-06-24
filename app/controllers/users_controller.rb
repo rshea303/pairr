@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize!, only: [:edit, :update]
+  before_action :authorize!
 
   def edit
     @user = User.find_by(id: params[:id])

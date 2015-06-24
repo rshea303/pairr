@@ -5,22 +5,10 @@ class StaticPagesController < ApplicationController
   end
 
   def dashboard
-    User.all.each do |user|
-      current_user.matches << Match.create(match_user_id: user.id)
-    end
-
-    selections_ids = current_user.selections.map do |selection|
-      selection.selected_user_id
-    end
-
-    reject_ids = current_user.rejects.map do |reject|
-      reject.rejected_user_id
-    end
-
-    current_user_match_ids = current_user.matches.map do |user|
-      user.match_user_id
-    end
-
+    User.make_current_matches(current_user)
+    selections_ids = Selection.make_selections_list(current_user) 
+    reject_ids = Reject.make_list_of_reject_ids(current_user)
+    current_user_match_ids = Match.current_user_match_ids(current_user)
     removed_users = (selections_ids + reject_ids + [current_user.id]).compact
 
     removed_users.each do |removed_user_id|

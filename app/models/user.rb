@@ -19,4 +19,10 @@ class User < ActiveRecord::Base
       user
   end
 
+  def self.make_current_matches(curr_user)
+    User.all.each do |user|
+      curr_user.matches << Match.create(match_user_id: user.id)
+    end
+  end
+
 end

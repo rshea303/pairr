@@ -80,4 +80,19 @@ RSpec.describe User, type: :model do
     expect(User.find(user.selections.last.selected_user_id).nickname).to eq("user3")
   end
 
+  it "has a list of matches"  do
+    user = User.create(description: "desc")
+    user1 = User.create(nickname: "user1", uid: "123", description: "user1 desc")
+    user2 = User.create(nickname: "user2", uid: "234", description: "user2 desc")
+    user3 = User.create(nickname: "user3", uid: "345", description: "user3 desc")
+
+    expect(user.matches.count).to eq(0)
+
+    user.matches << Match.create(match_user_id: user1.id)
+    user.matches << Match.create(match_user_id: user2.id)
+    user.matches << Match.create(match_user_id: user3.id)
+
+    expect(user.matches.count).to eq(3) 
+  end
+
 end

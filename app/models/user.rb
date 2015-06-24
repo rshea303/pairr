@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :languages
   has_many :rejects
   has_many :selections
+  has_many :matches
 
   validates :description, length: { maximum: 500 }
 
@@ -15,4 +16,5 @@ class User < ActiveRecord::Base
 
       user
   end
+
 end

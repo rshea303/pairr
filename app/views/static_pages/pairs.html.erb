@@ -3,13 +3,13 @@
     <div class="col-xs-4"></div>
     <div class="col-xs-4">
       <div id="match">
-        <p><%= @user.nickname %></p>
-        <p><%= @user.uid %></p>
-        <p><%= @user.image_url %></p>
-        <p><%= @user.description %></p>
+        <p><%= @match.nickname %></p>
+        <p><%= @match.uid %></p>
+        <p><%= @match.image_url %></p>
+        <p><%= @match.description %></p>
         <div class="row">
-            <%= button_to "Reject", "#", id: "reject-button" %>
-            <%= button_to "Approve", "#", id: "approve-button" %>
+            <%= button_to "Reject", rejects_path(rejected_user_id: @match.id), id: "reject-button" %>
+            <%= button_to "Approve", selections_path(selected_user_id: @match.id), id: "approve-button" %>
         </div>
       </div>
     </div>

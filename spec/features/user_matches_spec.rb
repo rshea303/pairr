@@ -19,4 +19,17 @@ describe "user" do
     expect(page).to have_content("user1")
     expect(page).to have_content("hello")
   end
+
+  it "can reject a user" do
+    user = User.create(nickname: "user", description: "hello")
+    user1 = User.create(nickname: "user1", description: "hello")
+
+    visit dashboard_path
+    click_on("Find Pairs")
+    
+    counter = user.rejects.count
+    click_on("Reject")
+
+    expect(user.rejects.count).to eq(counter + 1)
+  end
 end

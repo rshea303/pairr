@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  before_action :authorize!, only: [:dashboard, :pairs, :rejects, :selections]
+
   def home
   end
 

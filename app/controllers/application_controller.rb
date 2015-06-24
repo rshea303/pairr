@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize!
+    flash[:alert] = "Unauthorized Access!  Please sign in to continue."
     redirect_to root_path unless current_user
   end
-  #before_action :authorize!
 
 end

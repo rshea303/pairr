@@ -17,14 +17,6 @@ describe "user" do
     expect(page).to have_content("Find Pairs")
   end
 
-  it "can see page of matches" do
-    user = User.new(description: "hello")
-
-    visit dashboard_path
-
-    expect(page).to have_content("Find Pairs")
-  end
-
   it "can see first match" do
     user = User.create(nickname: "tom", description: "hello")
     user1 = User.create(nickname: "larry", description: "hello")

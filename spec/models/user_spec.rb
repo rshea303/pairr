@@ -110,7 +110,7 @@ RSpec.describe User, type: :model do
     expect(user.pendings.count).to eq(2)
   end
 
-  xit "becomes a pending for another user" do
+  it "becomes a pending for another user" do
     user = User.create(nickname: "user", description: "desc")
     user1 = User.create(nickname: "user1", description: "user1 desc")
 
@@ -120,8 +120,7 @@ RSpec.describe User, type: :model do
     expect(user.pendings.count).to eq(0)
     expect(user1.pendings.count).to eq(0)
 
-    user.selections << Selection.create(selected_user_id: user1.id)
-#   user1.pendings << Pending.create(pending_user_id: user.id)
+    user1.pendings << Pending.create(pending_user_id: user.id)
     expect(user1.pendings.count).to eq(1)
     expect(user1.pendings.last.pending_user_id).to eq(user.id)
   end

@@ -1,26 +1,31 @@
 <%= render 'shared/header' %>
 
-<div id="checklist">
-  <%= form_tag({:controller => "users", :action => "update"}, method: :put) do %>
-    <%= fields_for :language_ids do |ff| %>
-      <ul>
-        <% @languages.each do |language| %>
-          <li>
-            <%= ff.check_box(language.name, {}, language.id, nil) %>
-            <%= language.name %>
-          </li>
+<div class="container">
+  <div class="row" id="user-info-form">
+    <div id="checklist">
+    <h3>Please select some of your preferred programming languages:</h3>
+      <%= form_tag({:controller => "users", :action => "update"}, method: :put) do %>
+        <%= fields_for :language_ids do |ff| %>
+          <ul style="list-style-type: none;">
+            <% @languages.each do |language| %>
+              <li>
+                <%= ff.check_box(language.name, {}, language.id, nil) %>
+                <%= language.name %>
+              </li>
+            <% end %>
+          </ul>
+          <%= ff.submit "Submit Language Preferences" %>
         <% end %>
-      </ul>
-      <%= ff.submit "Submit Language Preferences" %>
-    <% end %>
-  <% end %>
+      <% end %>
+    </div>
+
+    <div class="row" id="desc-form">
+      <h3>Tell us more about yourself</h3>
+      <%= form_for @user do |f| %>
+        <%= f.text_area :description, size: "50x10", placeholder: "What programming languages interest you?\nWhat is your availability to pair look like?\nDo you work in the software industry?" %>
+        <p><%= f.submit "Submit Description" %></p>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<%= form_for @user do |f| %>
-  <%= f.label :description, placeholder: "Tell us more about yourself" %>
-  <%= f.text_area :description %>
-  <%= f.submit "Submit Description" %>
-<% end %>
-
-
 

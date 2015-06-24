@@ -1,11 +1,15 @@
 /* universal */
 
 .flash-notice {
+  height: 30px;
+  text-align: center;
   font-size: 20px;
   background-color: green;
 }
 
 .flash-alert {
+  height: 30px;
+  text-align: center;
   font-size: 20px;
   background-color: red;
 }
@@ -18,4 +22,20 @@
 
 #current-user-header {
   margin-top: 15px;
+}
+
+/* user info page */
+
+#user-info-form {
+  border: solid 1px black;
+  padding: 15px;
+}
+
+#checklist {
+  margin: 15px;
+}
+
+#desc-form {
+  margin-top: 25px;
+  padding: 25px;
 }

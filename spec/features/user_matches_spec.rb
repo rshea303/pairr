@@ -67,4 +67,37 @@ describe "user" do
     expect(user1.pendings.count).to eq(1)
   end
 
+  xit "pending match should be displayed first" do
+    user0 = User.create(nickname: "user0", description: "hello")
+    user = User.create(nickname: "Ralph", description: "hello")
+    user1 = User.create(nickname: "user1", description: "hello")
+    user2 = User.create(nickname: "user2", description: "hello")
+    user3 = User.create(nickname: "user3", description: "hello")
+    user.matches << Match.create(match_user_id: user0.id)
+    user.matches << Match.create(match_user_id: user1.id)
+    user.matches << Match.create(match_user_id: user2.id)
+    user.matches << Match.create(match_user_id: user3.id)
+    user1.matches << Match.create(match_user_id: user0.id)
+    user1.matches << Match.create(match_user_id: user.id)
+    user1.matches << Match.create(match_user_id: user2.id)
+    user1.matches << Match.create(match_user_id: user3.id)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit dashboard_path
+    click_on("Find Pairs")
+
+    click_on("Reject")
+
+    click_on("Approve")
+    
+    click_on("Logout")
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+
+    visit dashboard_path
+    click_on("Find Pairs")
+
+    expect(page).to have_content("Ralph")
+  end
+
 end

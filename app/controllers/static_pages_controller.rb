@@ -49,6 +49,8 @@ class StaticPagesController < ApplicationController
 
   def selections
     if current_user.pendings.find_by(pending_user_id: params[:selected_user_id])
+      current_user.buds << Bud.create(bud_user_id: params[:selected_user_id])
+      current_user.pendings.find_by(pending_user_id: params[:selected_user_id]).destroy
       flash[:notice] = "Congratulations! You and #{User.find(params[:selected_user_id]).nickname} are a pair!"
       redirect_to dashboard_path
     else

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :selections
   has_many :matches
   has_many :pendings
+  has_many :buds
 
   validates :description, length: { maximum: 500 }
 

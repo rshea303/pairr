@@ -1,5 +1,20 @@
 <%= render 'shared/header' %>
 
 <div class="container">
-  <%= link_to "Find Pairs", pairs_path, class: "btn btn-default" %>
+  <div class="row">
+    <%= link_to "Find Pairs", pairs_path, class: "btn btn-default" %>
+  </div>
+
+  <div class="row">
+    <h3>Current Matches</h3>
+    <% if current_user.buds %>
+      <ul>
+        <% current_user.buds.each do |bud| %>
+          <li><%= User.find(bud.bud_user_id).nickname %></li>
+        <% end %>
+      <ul>
+    <% else %>
+      No current matches
+    <% end %>
+  </div>
 </div>
